@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<h1>欢迎来到因果的十字路口</h1>
+<hr>
+{{school}}<br>
+{{testlist|join:'-'}}<br>
+{{testdict.a|yesno:'true,false,None'}}<br>
+{{testdict.keys}}<br>
+Now Time is {{testdate}}<br>
+
+<ul>
+    {% for k in testlist %}
+    <li style='color:{{forloop.counter|divisibleby:"2"|yesno:"red,blue"}}'>
+        {{forloop.counter}} key={{k|add:"100"}}
+    </li>
+    {% endfor %}
+</ul>
+<hr>
+<h2>九九方阵</h2>
+{% load myfilters %}
+<table>
+    {% for i in data %}
+    <tr style="color:{% cycle '#AAA' '#F0F0F0' '#000' %}">
+        {% for j in data %}
+        <td>
+            {{j}}*{{i}}={{i|multiply:j}}
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
